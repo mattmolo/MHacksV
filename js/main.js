@@ -10,11 +10,15 @@ function grid_init() {
             var left = xOrigin + ((grid.origin % 3) * baseSize);
             var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
 
-            $('<div/>', {
+            var div = $('<div/>', {
                 id: name,
                 style: "left: " + left + "px; top: " + top + "px;",
                 class: "tile " + grid.width + " " + grid.height
             }).appendTo('.main-grid');
+
+            $('<iframe/>'), {
+                src: grid.link;
+            }).appendTo(div);
 
 	    });
 	});

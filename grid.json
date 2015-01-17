@@ -1,78 +1,34 @@
 {
     "grid1" : {
         "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 0
-    },
-
-    "grid2" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-three-fifths",
-        "origin": 1
-    },
-
-    "grid3" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 2
-    },
-
-    "grid4" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 3
-    },
-
-    "grid5" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 5
-    },
-
-    "grid6" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
+        "width" : "w-full",
         "height" : "h-two-fifths",
-        "origin": 6
+        "origin": 0,
+        "link": "http://molonium.com/redditslide/?r=spaceporn&fit=true"
     },
 
-    "grid7" : {
+    "grid1" : {
         "name" : "module-1",
         "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 8
+        "height" : "h-one-fifths",
+        "origin": 6,
+        "link": "http://molonium.com/redditslide/?r=adviceanimals&fit=true"
     },
 
-    "grid8" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 10
-    },
-
-    "grid9" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 11
-    },
-
-    "grid10" : {
-        "name" : "module-1",
-        "width" : "w-one-third",
-        "height" : "h-one-fifth",
-        "origin": 12
-    },
-
-    "grid11" : {
+    "grid1" : {
         "name" : "module-1",
         "width" : "w-two-thirds",
         "height" : "h-one-fifth",
-        "origin": 13
+        "origin": 7,
+        "link": "http://molonium.com/redditslide/?r=funny"
+    },
+
+    "grid1" : {
+        "name" : "module-1",
+        "width" : "w-full",
+        "height" : "h-two-fifths",
+        "origin": 9,
+        "link": "http://molonium.com/redditslide/?r=earthporn"
     }
+
 }
