@@ -16,8 +16,8 @@ function grid_init() {
                 class: "tile " + grid.width + " " + grid.height
             }).appendTo('.main-grid');
 
-            $('<iframe/>'), {
-                src: grid.link;
+            $('<iframe/>', {
+                src: grid.link
             }).appendTo(div);
 
 	    });

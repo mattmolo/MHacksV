@@ -4,26 +4,25 @@
         "width" : "w-full",
         "height" : "h-two-fifths",
         "origin": 0,
-        "link": "http://molonium.com/redditslide/?r=spaceporn&fit=true"
+        "link": "modules/image.html?url=http://i.imgur.com/wFyIt.jpg&size=contain"
     },
-
-    "grid1" : {
+    "grid2" : {
         "name" : "module-1",
         "width" : "w-one-third",
-        "height" : "h-one-fifths",
+        "height" : "h-one-fifth",
         "origin": 6,
-        "link": "http://molonium.com/redditslide/?r=adviceanimals&fit=true"
+        "link": "http://molonium.com/redditslide/?r=adviceanimals"
     },
 
-    "grid1" : {
+    "grid3" : {
         "name" : "module-1",
         "width" : "w-two-thirds",
         "height" : "h-one-fifth",
         "origin": 7,
-        "link": "http://molonium.com/redditslide/?r=funny"
+        "link": "modules/time.html"
     },
 
-    "grid1" : {
+    "grid4" : {
         "name" : "module-1",
         "width" : "w-full",
         "height" : "h-two-fifths",
