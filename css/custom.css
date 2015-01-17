@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300);
 html, body {
+	color: white;
 	margin: 0;
 	padding: 0;
 	height: 100%;
@@ -7,21 +8,23 @@ html, body {
 	overflow: hidden;
 }
 .topHeader {
+	text-align: center;
+	font-size: 5em;
 	height: 120px;
 	width: 100%;
-	background: #ccc;
+	background: #000;
 }
 
 .main-grid {
-	background: #ddd;
+	background: #000;
 	width: 1080px;
 	height: 1920px;
 }
 
 .tile {
-	background: #eee;
+	border: 5px solid #fff;
 	float: left;
-	margin: 5px;
+	
 }
 
 .w-one-third {
