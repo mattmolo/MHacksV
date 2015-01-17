@@ -1,0 +1,10 @@
+{
+  "config": [
+    {
+      "gridBorderVisibility": true,
+      "gridBorderWidth": 1,
+      "gridBorderColor": "#555",
+      "titleFont": "Arial"
+    }
+  ]
+}

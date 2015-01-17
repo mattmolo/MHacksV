@@ -22,9 +22,9 @@ html, body {
 }
 
 .tile {
-	border: 5px solid #fff;
 	float: left;
-	
+	border: 1px solid #555;
+	margin: 4px;
 }
 
 .w-one-third {
