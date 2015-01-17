@@ -1,5 +1,5 @@
 function grid_init() {
-
+	$(".main-grid").empty();
     var xOrigin = 0;
     var yOrigin = 120;
     var baseSize = 360;
@@ -25,11 +25,9 @@ function grid_init() {
 
 }
 
-var a;
 function config_load() {
 	$.getJSON("config.json", function(json) {
 		json = json.config[0];
-		a = json;
 		$(".tile").css("border",json.gridBorderWidth + "px solid" + json.gridBorderColor);
 		$(".tile").css("margin", (5-json.gridBorderWidth) + "px");
 		if (!json.gridBorderVisibility)
