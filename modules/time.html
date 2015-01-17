@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
 </head>
-<body>
 <style>
   html, body {
+    font-family: 'Source Sans Pro', sans-serif;
     color: white;
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
     background: black;
+    text-align: center;
   }
 </style>
 <script type="application/javascript">
@@ -31,13 +33,75 @@ function getQueryParams(qs) {
     return params;
 }
 var query = getQueryParams(document.location.search);
-$("body").html(new Date().toTimeString().split(" GMT")[0])
+if(!query.fontSize) {
+    query.fontSize = "50em";
+}
+if(!query.military)
+{
+    query.military = "off";
+}
+$(document).ready(function(){
 
-setInterval(function(){
+$("body").css("font-size", query.fontSize);
+if(query.military == "off")
+{
+    var time = new Date().toTimeString().split(" GMT")[0];
+    if (Number(time.split(":")[0]) > 12)
+    {
+        time = time.replace("1","")
+        time = time + " pm"
+    }
+    else if (Number(time.split(":")[0]) < 10) {
+        time = time.replace("0","")
+        time = time + " am"
+    }
+    else {
+        time = time + " am"
+    }
+    $("body").html(time)
+}
+else {
     $("body").html(new Date().toTimeString().split(" GMT")[0])
+}
+setTimeout(function(){
+    if(isOverflowed()) {
+        $("body").css("font-size", $("body").css("font-size").split("px")[0] / 2 + "px");
+    }
+},100);
+setInterval(function(){
+    if(query.military == "off")
+    {
+        var time = new Date().toTimeString().split(" GMT")[0];
+        if (Number(time.split(":")[0]) > 12)
+        {
+            time = time.replace("1","")
+            time = time + " pm"
+        }
+        else if (Number(time.split(":")[0]) < 10) {
+            time = time.replace("0","")
+            time = time + " am"
+        }
+        else {
+            time = time + " am"
+        }
+        $("body").html(time)
+    }
+    else {
+        $("body").html(new Date().toTimeString().split(" GMT")[0])
+    }
+    if(isOverflowed()) {
+        $("body").css("font-size", $("body").css("font-size").split("px")[0] / 2 + "px");
+    }
 },1000);
+})
 
+function isOverflowed(){
+    var element = $("body")[0]
+    return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
 </script>
+<body>
+
 
 </body>
 

@@ -11,7 +11,7 @@
         "width" : "w-one-third",
         "height" : "h-one-fifth",
         "origin": 6,
-        "link": "http://molonium.com/redditslide/?r=adviceanimals"
+        "link": "modules/time.html?fontSize=25em"
     },
 
     "grid3" : {
@@ -19,7 +19,7 @@
         "width" : "w-two-thirds",
         "height" : "h-one-fifth",
         "origin": 7,
-        "link": "modules/time.html"
+        "link": "modules/time.html?fontSize=20em&military=off"
     },
 
     "grid4" : {
