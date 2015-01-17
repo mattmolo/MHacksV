@@ -14,7 +14,25 @@
     margin: 0;
     background: black;
     text-align: center;
+    overflow: hidden;
+    padding-top: 0.4em;
   }
+    .date {
+        display: none;
+    }
+  body {
+    font-size: 6em;
+  }
+  @media (min-width: 351px) {
+        .date {
+            display: block;
+        }
+        body {
+            font-size: 6.5em;
+            padding-top: 0.25em;
+        }
+
+    }
 </style>
 <script type="application/javascript">
 
@@ -33,72 +51,62 @@ function getQueryParams(qs) {
     return params;
 }
 var query = getQueryParams(document.location.search);
-if(!query.fontSize) {
-    query.fontSize = "50em";
-}
-if(!query.military)
-{
-    query.military = "off";
-}
 $(document).ready(function(){
-
-$("body").css("font-size", query.fontSize);
-if(query.military == "off")
-{
-    var time = new Date().toTimeString().split(" GMT")[0];
-    if (Number(time.split(":")[0]) > 12)
-    {
-        time = time.replace("1","")
-        time = time + " pm"
-    }
-    else if (Number(time.split(":")[0]) < 10) {
-        time = time.replace("0","")
-        time = time + " am"
-    }
-    else {
-        time = time + " am"
-    }
-    $("body").html(time)
-}
-else {
-    $("body").html(new Date().toTimeString().split(" GMT")[0])
-}
-setTimeout(function(){
-    if(isOverflowed()) {
-        $("body").css("font-size", $("body").css("font-size").split("px")[0] / 2 + "px");
-    }
-},100);
-setInterval(function(){
     if(query.military == "off")
     {
         var time = new Date().toTimeString().split(" GMT")[0];
-        if (Number(time.split(":")[0]) > 12)
+        var hours = new Date().getHours();
+        if (hours > 12)
         {
-            time = time.replace("1","")
+            time = time.replace(time.split(":")[0],time.split(":")[0] - 12)
             time = time + " pm"
         }
-        else if (Number(time.split(":")[0]) < 10) {
+        else if (hours < 10) {
             time = time.replace("0","")
             time = time + " am"
+        }
+        else if (hours == 12)
+        {
+            time = time + " pm"
         }
         else {
             time = time + " am"
         }
-        $("body").html(time)
+        $("body").html(time + "<div class='date'>" + (new Date().toDateString()) + "</div>")
     }
     else {
-        $("body").html(new Date().toTimeString().split(" GMT")[0])
+        $("body").html(new Date().toTimeString().split(" GMT")[0] + "<div class='date'>" + (new Date().toDateString()) + "</div>")
     }
-    if(isOverflowed()) {
-        $("body").css("font-size", $("body").css("font-size").split("px")[0] / 2 + "px");
+
+setInterval(function(){
+    if(query.military == "off")
+    {
+        var time = new Date().toTimeString().split(" GMT")[0];
+        var hours = new Date().getHours();
+        if (hours > 12)
+        {
+            time = time.replace(time.split(":")[0],time.split(":")[0] - 12)
+            time = time + " pm"
+        }
+        else if (hours < 10) {
+            time = time.replace("0","")
+            time = time + " am"
+        }
+        else if (hours == 12)
+        {
+            time = time + " pm"
+        }
+        else {
+            time = time + " am"
+        }
+        $("body").html(time + "<div class='date'>" + (new Date().toDateString()) + "</div>")
     }
+    else {
+        $("body").html(new Date().toTimeString().split(" GMT")[0] + "<div class='date'>" + (new Date().toDateString()) + "</div>")
+    }
+        
 },1000);
 })
-
-function isOverflowed(){
-    var element = $("body")[0]
-    return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
-}
 </script>
 <body>
 
