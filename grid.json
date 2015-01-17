@@ -1,68 +1,79 @@
 {
 
     "grid1" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 0,
         "name" : "module-1"
     },
 
     "grid2" : {
-        "height" : 3,
-        "width" : 1,
+        "height" : "h-three-fifths",
+        "width" : "w-one-third",
+        "origin": 1,
         "name" : "module-1"
     },
 
     "grid3" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 2,
         "name" : "module-1"
     },
 
     "grid4" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 3,
         "name" : "module-1"
     },
 
     "grid5" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 5,
         "name" : "module-1"
     },
 
     "grid6" : {
-        "height" : 2,
-        "width" : 1,
+        "height" : "h-two-fifths",
+        "width" : "w-one-third",
+        "origin": 6,
         "name" : "module-1"
     },
 
     "grid7" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 8,
         "name" : "module-1"
     },
 
     "grid8" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 10,
         "name" : "module-1"
     },
 
     "grid9" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 11,
         "name" : "module-1"
     },
 
     "grid10" : {
-        "height" : 1,
-        "width" : 1,
+        "height" : "h-one-fifth",
+        "width" : "w-one-third",
+        "origin": 12,
         "name" : "module-1"
     },
 
     "grid11" : {
-        "height" : 1,
-        "width" : 2,
+        "height" : "h-one-fifth",
+        "width" : "w-two-thirds",
+        "origin": 13,
         "name" : "module-1"
     }
 
