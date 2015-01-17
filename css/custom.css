@@ -1,4 +1,56 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300);
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+.topHeader {
+	height: 120px;
+	width: 100%;
+	background: #ccc;
+}
+
+.main-grid {
+	background: #ddd;
+	width: 1080px;
+	height: 1920px;
+}
+
+.tile {
+	background: #eee;
+	float: left;
+	margin: 5px;
+}
+
+.w-one-third {
+	width: 350px;
+}
+.w-one-half {
+	width: 530px;
+}
+.w-two-thirds {
+	width: 710px;
+}
+.w-full {
+	width: 1070px;
+}
+
+.h-one-fifth {
+	height: 350px;
+}
+.h-two-fifths {
+	height: 710px;
+}
+.h-three-fifths {
+	height: 1070px;
+}
+.h-four-fifths {
+	height: 1430px;
+}
+.w-full {
+	height: 1790px;
+}
 
 
 
