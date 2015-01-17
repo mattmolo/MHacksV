@@ -1,80 +1,78 @@
 {
-
     "grid1" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 0,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 0
     },
 
     "grid2" : {
-        "height" : "h-three-fifths",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 1,
-        "name" : "module-1"
+        "height" : "h-three-fifths",
+        "origin": 1
     },
 
     "grid3" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 2,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 2
     },
 
     "grid4" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 3,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 3
     },
 
     "grid5" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 5,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 5
     },
 
     "grid6" : {
-        "height" : "h-two-fifths",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 6,
-        "name" : "module-1"
+        "height" : "h-two-fifths",
+        "origin": 6
     },
 
     "grid7" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 8,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 8
     },
 
     "grid8" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 10,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 10
     },
 
     "grid9" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 11,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 11
     },
 
     "grid10" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-one-third",
-        "origin": 12,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 12
     },
 
     "grid11" : {
-        "height" : "h-one-fifth",
+        "name" : "module-1",
         "width" : "w-two-thirds",
-        "origin": 13,
-        "name" : "module-1"
+        "height" : "h-one-fifth",
+        "origin": 13
     }
-
 }
