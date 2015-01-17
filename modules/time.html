@@ -15,7 +15,11 @@
     background: black;
     text-align: center;
     overflow: hidden;
-    padding-top: 0.4em;
+  }
+  .container {
+    position: relative;
+    top: 20%;
+    margin: 0 auto;
   }
     .date {
         display: none;
@@ -29,7 +33,6 @@
         }
         body {
             font-size: 6.5em;
-            padding-top: 0.25em;
         }
 
     }
@@ -72,10 +75,10 @@ $(document).ready(function(){
         else {
             time = time + " am"
         }
-        $("body").html(time + "<div class='date'>" + (new Date().toDateString()) + "</div>")
+        $("body").html("<div class='container'>" + time + "<div class='date'>" + (new Date().toDateString()) + "</div></div>")
     }
     else {
-        $("body").html(new Date().toTimeString().split(" GMT")[0] + "<div class='date'>" + (new Date().toDateString()) + "</div>")
+        $("body").html("<div class='container'>" + new Date().toTimeString().split(" GMT")[0] + "<div class='date'>" + (new Date().toDateString()) + "</div></div>")
     }
 
 setInterval(function(){
@@ -99,10 +102,10 @@ setInterval(function(){
         else {
             time = time + " am"
         }
-        $("body").html(time + "<div class='date'>" + (new Date().toDateString()) + "</div>")
+        $("body").html("<div class='container'>" + time + "<div class='date'>" + (new Date().toDateString()) + "</div></div>")
     }
     else {
-        $("body").html(new Date().toTimeString().split(" GMT")[0] + "<div class='date'>" + (new Date().toDateString()) + "</div>")
+        $("body").html("<div class='container'>" + new Date().toTimeString().split(" GMT")[0] + "<div class='date'>" + (new Date().toDateString()) + "</div></div>")
     }
         
 },1000);
