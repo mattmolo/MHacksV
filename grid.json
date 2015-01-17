@@ -1,17 +1,24 @@
 {
     "grid1" : {
         "name" : "module-1",
-        "width" : "w-full",
+        "width" : "w-one-half",
         "height" : "h-two-fifths",
         "origin": 0,
         "link": "modules/image.html?url=http://i.imgur.com/wFyIt.jpg&size=contain"
+    },
+    "grid5" : {
+        "name" : "module-1",
+        "width" : "w-one-half",
+        "height" : "h-two-fifths",
+        "origin": 1.5,
+        "link": "modules/time.html?military=on"
     },
     "grid2" : {
         "name" : "module-1",
         "width" : "w-one-third",
         "height" : "h-one-fifth",
         "origin": 6,
-        "link": "modules/time.html?military=on"
+        "link": "modules/image.html?url=http://i.imgur.com/awzzhKz.gif&size=cover"
     },
 
     "grid3" : {
@@ -19,7 +26,7 @@
         "width" : "w-two-thirds",
         "height" : "h-one-fifth",
         "origin": 7,
-        "link": "modules/time.html?military=off"
+        "link": "modules/image.html?url=http://i.imgur.com/wFyIt.jpg&size=cover"
     },
 
     "grid4" : {
