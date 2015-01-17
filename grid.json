@@ -4,14 +4,14 @@
         "width" : "w-one-half",
         "height" : "h-two-fifths",
         "origin": 0,
-        "link": "modules/image.html?url=http://i.imgur.com/wFyIt.jpg&size=contain"
+        "link": "modules/matrix.html?color=white"
     },
     "grid5" : {
         "name" : "module-1",
         "width" : "w-one-half",
         "height" : "h-two-fifths",
         "origin": 1.5,
-        "link": "modules/time.html?military=on"
+        "link": "modules/time.html?military=off"
     },
     "grid2" : {
         "name" : "module-1",
