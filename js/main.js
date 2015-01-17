@@ -1,12 +1,12 @@
 function grid_init() {
-    var grid = $.getJSON("grid.json", function(data) {
-        $.each(data, function(key){
-            console.log(key);
-        });
+	var a;
+	$.getJSON("grid.json", function(json) {
+	    console.log(json);
+	    $.each(json, function( key, val ) {
+	    	console.log(val)
 
 
-
-
-    });
-
+	    });
+	});
+	return true;
 }
