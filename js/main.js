@@ -18,9 +18,7 @@ function grid_init() {
     $.getJSON(gridJson, function(json) {
         json = json[0].grid;
         $.each(json, function(name, grid) {
-            if(grid != null)
-            {
-                
+            if(grid == null) return true;
                 var left = xOrigin + ((grid.origin % 3) * baseSize);
                 var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
 
@@ -33,7 +31,6 @@ function grid_init() {
                 $('<iframe/>', {
                     src: grid.link
                 }).appendTo(div);
-            }
 	    });
 	});
 
