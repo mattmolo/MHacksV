@@ -29,6 +29,7 @@ app.get('/user/:name', function(req,res){
     var collection = db.get("users");
 
     collection.find({"username": name}, {limit:1}, function(e, docs){
+        if (docs.length < 1) res.status(404).send('Not found');
         res.json(docs);
     });
 });

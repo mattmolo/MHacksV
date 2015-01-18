@@ -7,50 +7,57 @@ function urlParam(name) {
     }
 }
 
-function grid_init() {
+function config_load(config) {
+    if (config == null) return;
+
+    $(".tile").css("border", config.gridBorderWidth + "px solid " + config.gridBorderColor);
+    $(".tile").css("margin", (5-config.gridBorderWidth) + "px");
+
+    if (!config.gridBorderVisibility) {
+	      $(".tile").css("border", "none");
+	      $(".tile").css("margin", "5px");
+    }
+
+    $(".topHeader").css("font-family", config.titleFont);
+}
+
+
+function grid_init(grid) {
+    if (grid == null) return;
 
     var xOrigin = 0;
     var yOrigin = 120;
     var baseSize = 360;
 
-    var gridJson = (urlParam('user') != null) ? "http://" + location.host + ":4050/user/" + urlParam('user') : "grid.json";
+    $.each(grid, function(grid, tile) {
+        if (tile == null) return true;
 
-    $.getJSON(gridJson, function(json) {
-        json = json[0].grid;
-        $.each(json, function(name, grid) {
-            if(grid == null) return true;
-                var left = xOrigin + ((grid.origin % 3) * baseSize);
-                var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
+        var left = xOrigin + ((tile.origin % 3) * baseSize);
+        var top = yOrigin + (Math.floor(tile.origin/3) * baseSize);
 
-                var div = $('<div/>', {
-                    id: name,
-                    style: "left: " + left + "px; top: " + top + "px;",
-                    class: "tile " + grid.width + " " + grid.height
-                }).appendTo('.main-grid');
+        var div = $('<div/>', {
+            id: name,
+            style: "left: " + left + "px; top: " + top + "px;",
+            class: "tile " + tile.width + " " + tile.height
+        }).appendTo('.main-grid');
 
-                $('<iframe/>', {
-                    src: grid.link
-                }).appendTo(div);
-	    });
-	});
-
+        $('<iframe/>', {
+            src: tile.link
+        }).appendTo(div);
+    });
 }
 
-var a;
-function config_load() {
-	$.getJSON("config.json", function(json) {
-		json = json.config[0];
-		a = json;
-		$(".tile").css("border",json.gridBorderWidth + "px solid" + json.gridBorderColor);
-		$(".tile").css("margin", (5-json.gridBorderWidth) + "px");
-		if (!json.gridBorderVisibility)
-		{
-			$(".tile").css("border", "none");
-			$(".tile").css("margin", "5px");
-		}
-		$(".topHeader").css("font-family",json.titleFont);
-	});
+function init(user) {
+    if ((user == null) || (user == '')) user = 'noUser';
+    console.log(user);
 
-
-
+    var xhr = $.getJSON('user/'+user, function(json) {
+        if (json[0].config) config_load(json[0].config.config[0]);
+        if (json[0].grid) grid_init(json[0].grid);
+    })
+      .fail(function() {
+          if (user != 'noUser') init('noUser')
+      });
+    
 }
+
