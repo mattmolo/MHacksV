@@ -74,7 +74,9 @@ button {
 	height: 300px;
 	margin: 0em auto;
 }
-
+.forms input {
+	text-align: center;
+}
 .module select {
 	width: 100%;
 	border: 1px solid rgba(0,0,0,0.1);
