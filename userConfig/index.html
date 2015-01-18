@@ -64,7 +64,7 @@
   <div class="grid">
     <div class="title_s">Modules</div>
     <div class="addBox" onClick="loadGrid()"><br>Loading . . </div>
-    <button onclick="">Update All</button>
+    <button onclick="sendData()">Update All</button>
   </div>  
 
 </div>
@@ -200,7 +200,7 @@ function changeModule(boxNumber, moduleName){
     var toAppend;
     $("."+boxNumber+"forms").append(moduleObj.list[i] + ":")
     if(listName == 'input') {
-      toAppend = "<input placeHolder='"+moduleObj.list[i]+"'' class='"+boxNumber+"input " + moduleObj.list[i] + "'></input>";
+      toAppend = "<input placeHolder='"+moduleObj.list[i]+"' class='"+boxNumber+"input " + moduleObj.list[i] + "'></input>";
     }
     else {
       toAppend = "<select class='"+boxNumber+"input " + moduleObj.list[i] + "'>";
@@ -308,16 +308,85 @@ function repairEdges(number, width, height)
 }
 function getModule(){
   var j;
+  var k;
+  var number;
+  var object = {};
+  var gridNumber = 0;
+  var sizeString;
+  var width;
+  var height;
+  var url;
   for(i = 0; i < grid.length; i++)
   {
     for(j = 0; j < grid[0].length; j++)
     {
       if(grid[i][j] == 1)
       {
-        console.log(i*3 + j)
+        number = i*3 + j;
+        width = Number($("#"+number+"width").val());
+        height = Number($("#"+number+"height").val());
+        name = $("."+number+"_p > select").val()
+        if(name == '' || typeof name == 'undefined')
+        {
+          break;
+        }
+        sizeString = sizeToString(width, height);
+        url = mList.url[$("."+number+"_p > select").val()] + "?";
+        for(k = 0; k < mList.moduleParams[name].list.length; k++)
+        {
+          url += mList.moduleParams[name].list[k] + "=" + $("."+number+"forms > ."+mList.moduleParams[name].list[k]).val()
+        }
+        object[number] = {
+          "name" : name,
+          "width" : sizeString[0],
+          "height" : sizeString[1],
+          "origin" : number,
+          "link" : url
+        }
+
+
       }
     }
   }
+  return object;
+}
+function sizeToString(width, height){
+  var result = [];
+  switch(width) {
+    case 1:
+    result[0] = 'w-one-third'
+    break;
+    case 2:
+    result[0] = 'w-two-thirds'
+    break;
+    case 3:
+    result[0] = 'w-full'
+    break;
+  }
+  switch(height) {
+    case 1:
+    result[1] = 'h-one-fifth'
+    break;
+    case 2:
+    result[1] = 'h-two-fifths'
+    break;
+    case 3:
+    result[1] = 'h-three-fifths'
+    break;
+    case 4:
+    result[1] = 'h-four-fifths'
+    break;
+    case 5:
+    result[1] = 'h-full'
+    break;
+  }
+  return result;
+}
+function sendData(){
+  var module = getModule();
+  var config = getConfig();
+  $.post("http://molee.me:4050/user/john/update", {grid: module, config: config})
+  console.log(module, config)
 }
 </script>
 </body>

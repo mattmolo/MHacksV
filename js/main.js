@@ -18,6 +18,10 @@ function grid_init() {
     $.getJSON(gridJson, function(json) {
         json = json[0].grid;
         $.each(json, function(name, grid) {
+            if(grid == null)
+            {
+                continue
+            }
             var left = xOrigin + ((grid.origin % 3) * baseSize);
             var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
 
