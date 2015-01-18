@@ -1,11 +1,22 @@
+function urlParam(name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    } else {
+       return results[1] || 0;
+    }
+}
+
+
 function grid_init() {
-	$(".main-grid").empty();
+
     var xOrigin = 0;
     var yOrigin = 120;
     var baseSize = 360;
 
-    $.getJSON("grid.json", function(json) {
-        console.log(json);
+    var gridJson = (urlParam('user') != null) ? "http://" + location.host + ":4050/user/" + urlParam('user') : "grid.json";
+
+    $.getJSON(gridJson, function(json) {
         $.each(json, function(name, grid) {
             var left = xOrigin + ((grid.origin % 3) * baseSize);
             var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
@@ -25,9 +36,11 @@ function grid_init() {
 
 }
 
+var a;
 function config_load() {
 	$.getJSON("config.json", function(json) {
 		json = json.config[0];
+		a = json;
 		$(".tile").css("border",json.gridBorderWidth + "px solid" + json.gridBorderColor);
 		$(".tile").css("margin", (5-json.gridBorderWidth) + "px");
 		if (!json.gridBorderVisibility)
