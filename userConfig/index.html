@@ -235,19 +235,47 @@ function checkKeyPress(obj)
   {
     boxNumber1 = obj.id.split("height")[0]
   }
+  var pWidth = Math.floor(Number($("."+boxNumber1+"_p").css("width").split("px")[0])/300);
+  var pHeight = Math.floor(Number($("."+boxNumber1+"_p").css("height").split("px")[0])/300);
   width = Number($("#"+boxNumber1+"width").val());
   height = Number($("#"+boxNumber1+"height").val());
+  $("."+boxNumber1+"_p").css("width",width*300+(width-1)*4+"px")
+  $("."+boxNumber1+"_p").css("height",height*300+(height-1)*4+"px")
   console.log("Width, height: " + width + ", " + height);
-  for (k = 0; k < width; k++)
+  if((width - pWidth) > 0 || (height - pHeight) > 0)
   {
-    for (l = 0; l < (height * 3); l += 3)
+    for (k = 0; k < width; k++)
     {
-      if (!(k == 0 && l == 0))
+      for (l = 0; l < (height * 3); l += 3)
       {
-       removeModule(Number(boxNumber1) + k + l);
-       repairEdges(boxNumber1, width, height);
+        if (!(k == 0 && l == 0))
+        {
+         removeModule(Number(boxNumber1) + k + l);
+        }
       }
     }
+  }
+  else {
+    for (k = width; k < pWidth; k++)
+    {
+      for (l = 0; l < (height * 3); l += 3)
+      {
+        if (!(k == 0 && l == 0))
+        {
+         addModule(Number(boxNumber1) + k + l);
+        }
+      }
+    }
+    for (k = height; k < pHeight; k++)
+    {
+      for (l = 0; l < width; l++)
+      {
+        if (!(k == 0 && l == 0))
+        {
+         addModule(Number(boxNumber1) + (k*3) + l);
+        }
+      }
+    }    
   }
 }
 function removeModule(boxNumber)
@@ -278,50 +306,19 @@ function repairEdges(number, width, height)
 {
 
 }
-/*
-    boxNumber1 = obj.id.split("height")[0]
-    var location = boxToGrid(boxNumber1);
-    diff = value - grid[location[0]][location[1]][0];
-    if(diff > 0)
+function getModule(){
+  var j;
+  for(i = 0; i < grid.length; i++)
+  {
+    for(j = 0; j < grid[0].length; j++)
     {
-      grid[location[0]][location[1]][1] = value;
-      var current = grid[location[0]][location[1]]
-
-      $("."+boxNumber1+"_p").css("height",300*current[1])
-      for(j = location[0]; j < current[0]; j++)
+      if(grid[i][j] == 1)
       {
-        for(k = location[1]; k < (location[1]+value); k++)
-        {
-          if(!(j == location[0] && k == location[1]))
-          {
-            removeModule((k*3)+j)
-          }
-        } 
+        console.log(i*3 + j)
       }
     }
-    else {
-      diff *= -1;
-
-
-      grid[location[0]][location[1]][1] = value;
-      var current = grid[location[0]][location[1]]
-
-      $("."+boxNumber1+"_p").css("height",300*current[1])
-      for(j = location[0]; j < current[0]; j++)
-      {
-        for(k = Number(location[1])+Number(value); k < (Number(location[1])+Number(value)+Number(diff)); k++)
-        {
-          if(!(j == location[0] && k == location[1]))
-          {
-            console.log("AddedModule at: "+boxToGrid((k*3)+l))
-            console.log("Location is at "+l+","+k)
-            addModule((k*3)+j)
-          }
-        } 
-      }
-
-
-    }*/
+  }
+}
 </script>
 </body>
 
