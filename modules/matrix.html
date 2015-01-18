@@ -16,7 +16,7 @@
 </style>
 <canvas id="c"></canvas>
 <script type="application/javascript">
-
+//SCRIPT TAKEN FROM http://thecodeplayer.com/walkthrough/matrix-rain-animation-html5-canvas-javascript
 
 function getQueryParams(qs) {
     qs = qs.split("+").join(" ");
@@ -33,9 +33,6 @@ function getQueryParams(qs) {
 }
 
 var query = getQueryParams(document.location.search);
-if (!query.color) {
-    query.color = "#0F0";
-}
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 
@@ -64,14 +61,7 @@ var b = 5;
 var r_a = 1;
 var g_a = 1;
 var b_a = 1;
-function draw()
-{
-    //Black BG for the canvas
-    //translucent BG to show trail
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, c.width, c.height);
-    
-    ctx.fillStyle = 'rgb(' + [r,g,b].join(',') + ')'; //green text
+function colorInc() {
     r += (5 * r_a);
     if (r >= 255 || r <= 0)
     {
@@ -87,6 +77,20 @@ function draw()
             }
         }
     }
+}
+function draw()
+{
+    //Black BG for the canvas
+    //translucent BG to show trail
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, c.width, c.height);
+    if (!query.color) {
+        ctx.fillStyle = 'rgb(' + [r,g,b].join(',') + ')'; //green text
+    }   
+    else {
+        ctx.fillStyle = query.color;
+    }
+
     ctx.font = font_size + "px arial";
     //looping over drops
     for(var i = 0; i < drops.length; i++)

@@ -4,7 +4,7 @@
         "width" : "w-one-half",
         "height" : "h-two-fifths",
         "origin": 0,
-        "link": "modules/matrix.html?color=white"
+        "link": "modules/matrix.html?color=chartreuse"
     },
     "grid5" : {
         "name" : "module-1",
@@ -34,7 +34,7 @@
         "width" : "w-full",
         "height" : "h-two-fifths",
         "origin": 9,
-        "link": "http://molonium.com/redditslide/?r=earthporn"
+        "link": "http://molonium.com/redditslide/?r=earthporn&fit=false"
     }
 
 }

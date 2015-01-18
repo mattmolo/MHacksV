@@ -1,0 +1,138 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300);
+html, body {
+	
+	color: white;
+	margin: 0;
+	padding: 0;
+	height: auto;
+	width: 100%;
+	font-family: Raleway;
+	padding-bottom: 200px;
+}
+
+.title {
+	background: #22aa86;
+	padding: 2em;
+	font-size: 3em;
+	text-align: center;
+}
+
+.main {
+	padding-top: 2em;
+	color: black;
+}
+.config {
+	float: left;
+	margin: 0 auto;
+	font-size: 2em;
+	width: 33.23%;
+	height: 300px;
+	text-align: center;
+}
+.filler {
+	width: 100%;
+	height: 200px;
+}
+.grid {
+	position: relative;
+	width: 920px;
+	font-size: 1.5em;
+	text-align: center;
+	margin: 0 auto;
+}
+.addBox {
+	float: left;
+	border: 1px solid rgba(0,0,0,0.3);
+	color: #444;
+	font-size: 1em;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+.addBox:hover {
+	border: 1px solid rgba(0,0,0,0.5);
+	background: #f8f8f8;
+	cursor: pointer;
+}
+.title_s {
+	font-size: 2em;
+	padding: 1em;
+}
+.module {
+	position: absolute;
+	border: 1px solid rgba(0,0,0,0.3);
+	font-size: 1em;
+	width: 300px;
+	height: 300px;
+	margin: 0em auto;
+}
+
+.module select {
+	width: 100%;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+.module input {
+	width: 99.99%;
+	border: 0;
+	border-bottom: 1px solid rgba(0,0,0,0.1); 
+	border-top: 1px solid rgba(0,0,0,0.1);;
+}
+.config form {
+	padding: 1em;
+	width: 200px;
+	margin: 0 auto;
+	text-align: left;
+
+}
+.config input {
+	text-align: center;
+}
+.w-one-third {
+	width: 350px;
+}
+.w-one-half {
+	width: 530px;
+}
+.w-two-thirds {
+	width: 710px;
+}
+.w-full {
+	width: 1070px;
+}
+
+.h-one-fifth {
+	height: 350px;
+}
+.h-two-fifths {
+	height: 710px;
+}
+.h-three-fifths {
+	height: 1070px;
+}
+.h-four-fifths {
+	height: 1430px;
+}
+.h-full {
+	height: 1790px;
+}
+
+
+
+/* Bigger than 550 */
+@media (min-width: 550px) {
+
+}
+@media (max-width: 550px) {
+
+}
+/* Bigger than 750 */
+@media (min-width: 750px) {
+ 
+}
+
+/* Bigger than 1000 */
+@media (min-width: 1900px) {
+	.addBox, .module {
+		margin: 0 1px;
+	}
+}

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>MirrorMirror - User Config</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+   <link rel="stylesheet" href="css/normalize.css">
+   <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <!-- Random Link Image
+  ––––––––––––––––––––––––––––––––––––––––––––––––––
+  <link rel="image_src" href="http://orange-gaming.org/icon" />
+  -->
+
+  <!-- Favicon
+  ––––––––––––––––––––––––––––––––––––––––––––––––––
+  <link rel="icon" type="image/png" href="http://orange-gaming.org/icon" />
+  -->
+
+
+</head>
+<body>
+<div class="title">User Configuration</div>
+<div class="main">
+  <div class="config">
+    Grid Visibility
+    <form>
+      <input type="radio" name="gridBorderVisibility" value="true" checked>Visibile
+      <br>
+      <input type="radio" name="gridBorderVisibility" value="false">Hidden
+    </form>
+    </div>
+  <div class="config">
+    Grid Width [1 - 5 px]
+    <br>
+    <input type="range" name="gridBorderWidth" min="1" max="5" maxlength="1" oninput="update()"></input>
+    <div id="widthValue">3</div>
+  </div>
+  <div class="config">
+    Grid Opacity [%]
+    <br>
+    <input type="range" name="gridBorderColor" min="0" max="100" maxlength="3" oninput="update()"></input>
+    <div id="colorValue">50</div>
+  </div>
+  <div class="grid">
+    <div class="title_s">Modules</div>
+    <div class="addBox" onClick="loadGrid()"><br>Loading . . </div>
+  </div>  
+</div>
+
+
+</div>
+<div class="filler"></div>
+
+
+
+<script type="application/javascript">
+var xOrigin = 0;
+var yOrigin = 400;
+
+  $('input[name=gridBorderVisibility][value=false]').click(function(){
+    $("input[name=gridBorderWidth]").prop('disabled', true);
+    $("input[name=gridBorderColor]").prop('disabled', true);
+
+  })
+  $('input[name=gridBorderVisibility][value=true]').click(function(){
+    $("input[name=gridBorderWidth]").prop('disabled', false);
+    $("input[name=gridBorderColor]").prop('disabled', false);
+  })
+function update()
+{
+    $("#widthValue").html($('input[name=gridBorderWidth').val());
+    $("#colorValue").html($('input[name=gridBorderColor').val());
+}
+getConfig()
+function getConfig() {
+  var hex = (Math.ceil($('input[name=gridBorderColor]').val() * 16 / 100)).toString(16);
+  var hex = hex + hex + hex;
+  var json = {
+    "config": [
+      {
+        "gridBorderVisibility": $('input[name=gridBorderVisibility]:checked').val(),
+        "gridBorderWidth": $('input[name=gridBorderWidth]').val(),
+        "gridBorderColor": "#"+hex+"",
+        "titleFont": "Arial"
+      }
+    ]
+  }
+  return json;
+
+}
+var mList;
+$.getJSON("moduleList.json", function(json) {
+   mList = json;
+});
+var currentBox = 0;
+
+function newModule() {
+  var i;
+
+  var module = "<div class='module "+ currentBox +"_p'>"
+  module += "<select class='"+ (currentBox) +"'>"
+  module += "<option value=''></option>"
+  for (i = 0; i < mList.list.length; i++)
+  {
+    module += "<option value='"+mList.list[i]+"'>"+mList.list[i]+"</option>"
+  }
+  module += "</select></div>"
+  //console.log(module)
+  return module;
+
+}
+var a;
+setTimeout(function(){
+    for (i = 0; i < 15; i++)
+    {
+     addModule();
+    }
+    $(".addBox").toggle()
+},1000);
+function addModule(){
+  $(".addBox").before(newModule())
+  $("."+currentBox+"_p").css("top",currentBox % 5 * 305 + yOrigin);
+  $("."+currentBox+"_p").css("left",currentBox % 3 * 305 + xOrigin);
+  $("."+currentBox+"_p > select").change(function() {
+    changeModule(this.className, this.selectedOptions[0].value);
+  });
+  currentBox++;
+}
+var referenceGrid = [[[1,0],[2,0],[3,0]],[[4,0],[5,0],[6,0]],[[7,0],[8,0],[9,0]],[[10,0],[11,0],[12,0]],[[13,0],[14,0],[15,0]]]
+function changeModule(boxNumber, moduleName){
+
+  //console.log(boxNumber, moduleName)
+  $("."+boxNumber).nextAll().remove()
+  if(moduleName == '')
+  {
+    return;
+  }
+  $("."+boxNumber).after("<div class='"+boxNumber+"forms'></div>")
+  var i, j;
+  var moduleObj = mList.moduleParams[moduleName]
+  var listName;
+  for (i=0; i < moduleObj.list.length; i++)
+  {
+    listName = moduleObj[moduleObj.list[i]];
+    console.log(listName)
+    var toAppend;
+    $("."+boxNumber+"forms").append(moduleObj.list[i] + ":")
+    if(listName == 'input') {
+      toAppend = "<input placeHolder='"+moduleObj.list[i]+"'' class='"+boxNumber+"input " + moduleObj.list[i] + "'></input>";
+    }
+    else {
+      toAppend = "<select class='"+boxNumber+"input " + moduleObj.list[i] + "'>";
+      for(j = 0; j < listName.length; j++){
+        toAppend += "<option value='"+listName[j]+"'>"+listName[j]+"</option>";
+      }
+      toAppend += "</select>"
+    }
+    $("."+boxNumber+"forms").append(toAppend)
+  }
+  $("."+boxNumber+"forms").append("<div class='"+boxNumber+"tileSize'></div>");
+  
+}
+
+
+</script>
+</body>
+
+
+</html>
+
+
+
+
+
