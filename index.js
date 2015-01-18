@@ -74,6 +74,4 @@ app.get('/cors/*', function(req, res){
         });
 });
 
-//comment test
-
 app.listen(4050);
