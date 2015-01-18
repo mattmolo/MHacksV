@@ -1,6 +1,7 @@
 var mongo = require('mongodb');
 var express = require('express');
 var monk = require('monk');
+var requestify = require('requestify');
 var db =  monk('localhost:27017/mhacksv');
 var app = new express();
 
@@ -24,7 +25,7 @@ app.configure(function() {
 
 
 //return user file at /user/username/
-app.get('/user/:name', function(req,res){
+app.get('/user/:name', function(req, res){
     var name = req.params.name;
     var collection = db.get("users");
 
@@ -35,7 +36,7 @@ app.get('/user/:name', function(req,res){
 });
 
 //set grid and config data from post request
-app.post('/user/:name/update', function(req,res){
+app.post('/user/:name/update', function(req, res){
     var name = req.params.name;
     var grid = req.body.grid;
     var config = req.body.config;
@@ -47,7 +48,7 @@ app.post('/user/:name/update', function(req,res){
 });
 
 //Add a new user
-app.post('/user/new', function(req,res){
+app.post('/user/new', function(req, res){
     var username = req.body.username
     var name = req.body.name;
     var grid = req.body.grid;
@@ -62,6 +63,15 @@ app.post('/user/new', function(req,res){
     }, function(e, docs){
         res.json(docs);
     });
+});
+
+//A cors proxy e.g. /cors/http://www.reddit.com/r/javascript.json
+app.get('/cors/*', function(req, res){
+    var url = req.params;
+    requestify.get(url[0])
+        .then(function(response) {
+            res.send(response.getBody());
+        });
 });
 
 //comment test
