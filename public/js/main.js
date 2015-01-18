@@ -52,8 +52,8 @@ function init(user) {
     console.log(user);
 
     var xhr = $.getJSON('user/'+user, function(json) {
-        if (json[0].config) config_load(json[0].config.config[0]);
         if (json[0].grid) grid_init(json[0].grid);
+        if (json[0].config) config_load(json[0].config);
     })
       .fail(function() {
           if (user != 'noUser') init('noUser')

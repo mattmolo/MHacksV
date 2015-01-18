@@ -102,15 +102,11 @@ function getConfig() {
   }
   var hex = hex + hex + hex;
   var json = {
-    "config": [
-      {
         "gridBorderVisibility": $('input[name=gridBorderVisibility]:checked').val(),
         "gridBorderWidth": $('input[name=gridBorderWidth]').val(),
         "gridBorderColor": "#"+hex+"",
         "titleFont": "Arial"
-      }
-    ]
-  }
+      };
   return json;
 
 }
@@ -386,7 +382,7 @@ function sizeToString(width, height){
 function sendData(){
   var module = getModule();
   var config = getConfig();
-  $.post("http://molee.me:4050/user/"+urlParam("name")+"/update", {grid: module, config: config})
+  $.post("/user/"+urlParam("user")+"/update", {grid: module, config: config})
   console.log(module, config)
 }
 function urlParam(name) {
