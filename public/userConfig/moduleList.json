@@ -4,7 +4,8 @@
         "matrix",
         "time",
         "weather",
-        "reddit"
+        "reddit",
+        "purdueBus"
     ],
     "moduleParams": {
         "image" : {
@@ -36,16 +37,22 @@
         "reddit" : {
             "list" : [
                 "r",
-                "fit"
+                "fit",
+                "delay"
             ],
             "r" : "input",
             "fit" : [
                 "true",
                 "false"
-            ]
+            ],
+            "delay" : "input"
         },
         "weather" : {
 
+        },
+        "purdueBus" : {
+            "list" : [
+            ]
         }
     },
     "url": {
@@ -53,7 +60,7 @@
         "matrix" : "modules/matrix.html",
         "time" : "modules/time.html",
         "weather" : "modules/weather.html",
-        "reddit" : "http://molonium.com/redditslide/"
-
+        "reddit" : "http://molonium.com/redditslide/",
+        "purdueBus" : "http://mattmolo.com/mirror/"
     }
 }
