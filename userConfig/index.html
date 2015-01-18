@@ -64,7 +64,9 @@
   <div class="grid">
     <div class="title_s">Modules</div>
     <div class="addBox" onClick="loadGrid()"><br>Loading . . </div>
+    <button onclick="">Update All</button>
   </div>  
+
 </div>
 
 
@@ -93,7 +95,11 @@ function update()
 }
 getConfig()
 function getConfig() {
-  var hex = (Math.ceil($('input[name=gridBorderColor]').val() * 16 / 100)).toString(16);
+  var hex = (Math.ceil($('input[name=gridBorderColor]').val() * 16 / 100)).toString(17);
+  if(hex == "g")
+  {
+    hex = "f"
+  }
   var hex = hex + hex + hex;
   var json = {
     "config": [
@@ -114,11 +120,17 @@ $.getJSON("moduleList.json", function(json) {
 });
 var currentBox = 0;
 
-function newModule() {
+function newModule(number) {
   var i;
-
-  var module = "<div class='module "+ currentBox +"_p'>"
-  module += "<select class='"+ (currentBox) +"'>"
+  if(typeof number == 'undefined')
+  {
+    var module = "<div class='module "+ currentBox +"_p'>"
+    module += "<select class='"+ (currentBox) +"'>"
+  }
+  else {
+    var module = "<div class='module "+ number +"_p'>"
+    module += "<select class='"+ (number) +"'>"    
+  }
   module += "<option value=''></option>"
   for (i = 0; i < mList.list.length; i++)
   {
@@ -127,8 +139,8 @@ function newModule() {
   module += "</select></div>"
   //console.log(module)
   return module;
+  }
 
-}
 var a;
 setTimeout(function(){
     for (i = 0; i < 15; i++)
@@ -137,16 +149,28 @@ setTimeout(function(){
     }
     $(".addBox").toggle()
 },1000);
-function addModule(){
-  $(".addBox").before(newModule())
-  $("."+currentBox+"_p").css("top",currentBox % 5 * 305 + yOrigin);
-  $("."+currentBox+"_p").css("left",currentBox % 3 * 305 + xOrigin);
-  $("."+currentBox+"_p > select").change(function() {
-    changeModule(this.className, this.selectedOptions[0].value);
-  });
-  currentBox++;
+function addModule(number){
+  if(typeof number == 'undefined')
+  {
+    $(".addBox").before(newModule())
+    $("."+currentBox+"_p").css("top",(Math.floor(currentBox / 3) * 305) + yOrigin);
+    $("."+currentBox+"_p").css("left",(currentBox % 3 * 305) + xOrigin);
+    $("."+currentBox+"_p > select").change(function() {
+      changeModule(this.className, this.selectedOptions[0].value);
+    });
+    currentBox++;
+  }
+  else {
+    $(".addBox").before(newModule(number))
+    $("."+number+"_p").css("top",(Math.floor(number / 3) * 305) + yOrigin);
+    $("."+number+"_p").css("left",(number % 3 * 305) + xOrigin);
+    $("."+number+"_p > select").change(function() {
+      changeModule(this.className, this.selectedOptions[0].value);
+      //console.log(this.className, this.selectedOptions[0].value)
+    });    
+  }
 }
-var referenceGrid = [[[1,0],[2,0],[3,0]],[[4,0],[5,0],[6,0]],[[7,0],[8,0],[9,0]],[[10,0],[11,0],[12,0]],[[13,0],[14,0],[15,0]]]
+var grid = [[[1,1],[1,1],[1,1]],[[1,1],[1,1],[1,1]],[[1,1],[1,1],[1,1]],[[1,1],[1,1],[1,1]],[[1,1],[1,1],[1,1]]]
 function changeModule(boxNumber, moduleName){
 
   //console.log(boxNumber, moduleName)
@@ -177,10 +201,96 @@ function changeModule(boxNumber, moduleName){
     }
     $("."+boxNumber+"forms").append(toAppend)
   }
+  $("."+boxNumber+"forms").append("Tile Size [Max "+(3-(boxNumber % 3))+"x"+(5 - (boxNumber % 5))+"]:")
   $("."+boxNumber+"forms").append("<div class='"+boxNumber+"tileSize'></div>");
-  
+  $("."+boxNumber+"tileSize").html("<input maxlength='1' onchange='checkKeyPress(this)' onkeypress='return event.charCode >= 49 && event.charCode <= "+(51 - (boxNumber % 3))+"' placeholder='Tile Width' id='"+boxNumber+"width'><input maxlength='1' onchange='checkKeyPress(this)' onkeypress='return event.charCode >= 49 && event.charCode <= "+(53 - (boxNumber % 5))+"' placeholder='Tile Height' id='"+boxNumber+"height'>")
 }
 
+function checkKeyPress(obj)
+{
+  var width = obj.id.search("width") + 1
+  var height = obj.id.search("height") + 1
+  var value = $("#"+obj.id).val();
+  var boxNumber;
+  a = obj;
+  var j;
+  var k;
+  var l;
+  var diff;
+  if(width)
+  {
+    boxNumber = obj.id.split("width")[0]
+    var location = boxToGrid(boxNumber);
+    diff = value - grid[location[0]][location[1]][0];
+    if (diff > 0)
+    {
+      grid[location[0]][location[1]][0] = value;
+      var current = grid[location[0]][location[1]]
+      $("."+boxNumber+"_p").css("width",300*current[0])
+      for(j = location[0]; j < location[0] + value; j++)
+      {
+        for(k = location[1]; k < (current[1]); k++)
+        {
+          if(!(j == location[0] && k == location[1]))
+          {
+            removeModule(((k*3)+j));
+            console.log(((k*3)+j))
+          }
+        } 
+      }
+    }
+    else {
+      diff *= -1;
+      grid[location[0]][location[1]][0] = value;
+      var current = grid[location[0]][location[1]]
+      $("."+boxNumber+"_p").css("width",300*current[0])
+      console.log("diff"+diff);
+      for(k = Number(location[0]) + Number(value) + Number(diff); k >= location[0] + value -1; k--)
+      {
+        console.log("k: "+k)
+        for(l = Number(location[1]); l < (current[1]); l++)
+        {
+          console.log("k: "+l)
+          if(!(k == location[0] && l == location[1]))
+          {
+            console.log("AddedModule at: "+boxToGrid((l*3)+k))
+            addModule(((l*3)+k));
+          }
+        } 
+      }      
+    }
+  }
+  else if(height)
+  {
+    boxNumber = obj.id.split("height")[0]
+    var location = boxToGrid(boxNumber);
+    grid[location[0]][location[1]][1] = value;
+    var current = grid[location[0]][location[1]]
+
+    $("."+boxNumber+"_p").css("height",300*current[1])
+    for(j = location[0]; j < current[0]; j++)
+    {
+      for(k = location[1]; k < (location[1]+value); k++)
+      {
+        if(!(j == location[0] && k == location[1]))
+        {
+          removeModule((k*3)+j)
+        }
+      } 
+    }
+  }
+}
+function removeModule(boxNumber)
+{
+  if(typeof $("."+boxNumber+"_p")[0] !== 'undefined')
+  {
+    $("."+boxNumber+"_p").remove()
+  }
+}
+function boxToGrid(number)
+{
+  return [number % 3,Math.floor(number / 3)]
+}
 
 </script>
 </body>

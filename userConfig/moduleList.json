@@ -1,0 +1,59 @@
+{
+    "list": [
+        "image",
+        "matrix",
+        "time",
+        "weather",
+        "reddit"
+    ],
+    "moduleParams": {
+        "image" : {
+            "list" : [
+                "url",
+                "size"
+            ],
+            "url" : "input",
+            "size" : [
+                "cover",
+                "contain"
+            ]
+        },
+        "matrix" : {
+            "list" : [
+                "color"
+            ],
+            "color" : "input"
+        },
+        "time" : {
+            "list" : [
+                "military"
+            ],
+            "military" : [
+                "on",
+                "off"
+            ]
+        },
+        "reddit" : {
+            "list" : [
+                "subreddit",
+                "fit"
+            ],
+            "subreddit" : "input",
+            "fit" : [
+                "true",
+                "false"
+            ]
+        },
+        "weather" : {
+
+        }
+    },
+    "url": {
+        "image" : "modules/image.html",
+        "matrix" : "modules/matrix.html",
+        "time" : "modules/time.html",
+        "weather" : "modules/weather.html",
+        "reddit" : "http://molonium.com/redditslide/"
+
+    }
+}
