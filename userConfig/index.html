@@ -335,6 +335,7 @@ function getModule(){
         for(k = 0; k < mList.moduleParams[name].list.length; k++)
         {
           url += mList.moduleParams[name].list[k] + "=" + $("."+number+"forms > ."+mList.moduleParams[name].list[k]).val()
+          url += "&"
         }
         object[number] = {
           "name" : name,
