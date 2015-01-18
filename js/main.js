@@ -18,23 +18,22 @@ function grid_init() {
     $.getJSON(gridJson, function(json) {
         json = json[0].grid;
         $.each(json, function(name, grid) {
-            if(grid == null)
+            if(grid != null)
             {
-                continue
+                
+                var left = xOrigin + ((grid.origin % 3) * baseSize);
+                var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
+
+                var div = $('<div/>', {
+                    id: name,
+                    style: "left: " + left + "px; top: " + top + "px;",
+                    class: "tile " + grid.width + " " + grid.height
+                }).appendTo('.main-grid');
+
+                $('<iframe/>', {
+                    src: grid.link
+                }).appendTo(div);
             }
-            var left = xOrigin + ((grid.origin % 3) * baseSize);
-            var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
-
-            var div = $('<div/>', {
-                id: name,
-                style: "left: " + left + "px; top: " + top + "px;",
-                class: "tile " + grid.width + " " + grid.height
-            }).appendTo('.main-grid');
-
-            $('<iframe/>', {
-                src: grid.link
-            }).appendTo(div);
-
 	    });
 	});
 
