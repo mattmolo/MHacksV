@@ -35,10 +35,10 @@
         },
         "reddit" : {
             "list" : [
-                "subreddit",
+                "r",
                 "fit"
             ],
-            "subreddit" : "input",
+            "r" : "input",
             "fit" : [
                 "true",
                 "false"
