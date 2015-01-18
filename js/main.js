@@ -7,7 +7,6 @@ function urlParam(name) {
     }
 }
 
-
 function grid_init() {
 
     var xOrigin = 0;
@@ -17,6 +16,7 @@ function grid_init() {
     var gridJson = (urlParam('user') != null) ? "http://" + location.host + ":4050/user/" + urlParam('user') : "grid.json";
 
     $.getJSON(gridJson, function(json) {
+        json = json[0].grid;
         $.each(json, function(name, grid) {
             var left = xOrigin + ((grid.origin % 3) * baseSize);
             var top = yOrigin + (Math.floor(grid.origin/3) * baseSize);
