@@ -4,7 +4,7 @@
         "width" : "w-one-third",
         "height" : "h-two-fifths",
         "origin": 0,
-        "link": "modules/matrix.html?color=chartreuse"
+        "link": "modules/matrix.html"
     },
 
     "grid6" : {
@@ -12,7 +12,7 @@
         "width" : "w-one-third",
         "height" : "h-two-fifths",
         "origin": 2,
-        "link": "modules/matrix.html?color=chartreuse"
+        "link": "modules/matrix.html"
     },
     "grid7" : {
         "name" : "module-1",
@@ -41,7 +41,7 @@
         "width" : "w-two-thirds",
         "height" : "h-one-fifth",
         "origin": 7,
-        "link": "modules/image.html?url=http://i.imgur.com/wFyIt.jpg&size=cover"
+        "link": "modules/image.html?url=http://i.imgur.com/4ibC1eK.jpg&size=contain"
     },
 
     "grid4" : {
